@@ -54,6 +54,8 @@ if(navbarFormLinkStatus === false){
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li'>Portal Access</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
+        <li className='nav-li'>Display Proposals</li>
+        <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li' onClick={handleClick}>Proposal Form</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='icon-buttons'>?</li>
@@ -80,7 +82,9 @@ if(navbarFormLinkStatus === false){
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li'>Portal Access</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
-        <li className='nav-li' onClick={handleClick}>Return</li>
+        <li className='nav-li'>Display Proposals</li>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <li className='nav-li' onClick={handleClick}>Home Page</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='icon-buttons'>?</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
