@@ -102,7 +102,7 @@ if(formStatus === true){
                 'project' Voting ballots are sent to homeowners quarterly to ensure that every homeowner is considered in the voting process.
                 70% of homeowners must vote yes on a project in order for the project to be approved, as funds for the project come from homeowner dues.
                 Dues from one community may not be applied to another community's project, efforts or services.</p>
-              <p>&nbsp;&nbsp;&nbsp;</p>
+
               <p className="project-disclaimer">Project requests may be submitted through the proposal form by clicking on the 'Proposal Form' navigation button above.</p>
               <p className="project-disclaimer">All project proposals will be submitted for voting in the beginning of the following quarter, unless urgent.</p>
               <p className="project-disclaimer">Urgent proposals are considered 'Concerns' and may be submitted as a concern by clicking the 'Concern' checkbox in the form. 

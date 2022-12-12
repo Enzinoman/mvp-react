@@ -64,25 +64,29 @@ app.get('/proposals', (req, res) => {
 //     })
 // });
 
-// app.post('/vehicles', (req, res) => {
-//     let vehicles = req.body;
-//     let id = vehicles.id;
-//     let vin = vehicles.vin;
-//     let make = vehicles.make;
-//     let model = vehicles.model;
-//     let vehYear = vehicles.veh_year;
-//     let symptom = vehicles.symptom;
-//     let serviceRepair = vehicles.serviceRepair;
-//     let repairDuration = vehicles.repairDuration;
-//     let customerName = vehicles.customer_name;
-//     console.log(vehicles);
-//     client.query(`INSERT INTO vehicles (id, vin, make, model, veh_year, symptom, service_repair, repair_duration, customer_name)
-//     VALUES (${id}, '${vin}', '${make}', '${model}', ${vehYear}, '${symptom}', '${serviceRepair}', ${repairDuration}, '${customerName}') RETURNING *`)
-//     .then(result =>{
+app.post('/proposals', (req, res) => {
+    let proposals = req.body;
+    let id = proposals.id;
+    let firstname = proposals.firstname;
+    let lastname = proposals.lastname;
+    let city = proposals.city;
+    let statename = proposals.statename;
+    let email = proposals.email;
+    let phonenumber = proposals.phonenumber;
+    let communityname = proposals.communityname;
+    let proposal = proposals.proposal;
+    let reviewed = proposals.reviewed;
+    let response = proposals.response;
+    let projectname = proposals.projectname;
+    let boardmember = proposals.boardmember;
+    console.log(proposals);
+    client.query(`INSERT INTO vehicles (firstname, lastname, city, statename, email, phonenumber, communityname, proposal, reviewed, response, projectname, boardmember)
+    VALUES ('${firstname}', '${lastname}', '${city}', ${statename}, '${email}', '${phonenumber}', ${communityname}, '${proposal}', '${reviewed}', '${response}', '${projectname}', '${boardmember}') RETURNING *`)
+    .then(result =>{
         
-//         res.status(200).send(result.rows);
-//     })
-// });
+        res.status(200).send(result.rows);
+    })
+});
 
 // app.post('/technicians', (req, res) => {
 //     let technicians = req.body;

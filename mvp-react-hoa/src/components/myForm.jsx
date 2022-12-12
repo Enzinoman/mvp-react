@@ -7,14 +7,14 @@ import './myForm.css'
 
 function MyForm(props) {
 
-    const [ownerFirstName, setOwnerFirstName] = useState("")
-    const [ownerLastName, setOwnerLastName] = useState("")
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
     const [city, setCity] = useState("")
     const [stateName, setStateName] = useState("")
     const [email, setEmail] = useState("")
     const [phoneNumber, setPhoneNUmber] = useState("")
     const [communityName, setCommunityName] = useState("")
-    const [proposalConcern, setProposalConcern] = useState("")
+    const [userProposal, setUserProposal] = useState("")
     const [reviewed, setReviewed] = useState(false)
     const [boardResponse, setBoardResponse] = useState("")
     const [projectName, setProjectName] = useState("")
@@ -25,14 +25,18 @@ function MyForm(props) {
     const {displayProjects, setDisplayProjects} = useContext(appContext)
 
  
-    const submitDataToProjects = () =>{
-      if(projectSubmit === false){
-      console.log("I will be submitting something soon");
-      setProjectSubmit(true)
-      }else{
-        setProjectSubmit(false)
-        console.log("I will return to original status");
-      }
+    const handleProposalSubmit = (e) => {
+      e.preventDefault();
+      const update = {firstName, lastName, city, stateName, email, phoneNumber, communityName, userProposal};
+      console.log(update);
+      fetch('http://localhost:8007/proposals', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(update)
+      })
+      .then(() => {
+        console.log('new item added');
+      })
     }
    
 
@@ -43,15 +47,15 @@ function MyForm(props) {
 
 
     return (
-      <form>
+      <form className="proposal-form">
       <p className="inputRequest">Please fill in the fields below</p>
       <p></p>
         <label className="label"
         >First name :&nbsp;
           <input className="input-field" type="text" 
           id="firstNameInput"
-          value={ownerFirstName}
-          onChange={(e) => setOwnerFirstName(e.target.value)} 
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)} 
           />
         </label>
         <p></p>
@@ -59,8 +63,8 @@ function MyForm(props) {
         >Last name :&nbsp;
           <input className="input-field" type="text" 
           id="lastNameInput"
-          value={ownerLastName}
-          onChange={(e) => setOwnerLastName(e.target.value)} 
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)} 
           />
         </label>
         <p></p>
@@ -113,7 +117,7 @@ function MyForm(props) {
         >Proposal / Concern :&nbsp;
           <input className="input-field" type="text" 
           id="proposalInput"
-          value={proposalConcern}
+          value={userProposal}
           onChange={(e) => setProposalConcern(e.target.value)} 
           />
         </label>
@@ -123,7 +127,7 @@ function MyForm(props) {
           
         </label>
         <p>&nbsp;</p>
-        <button className="submit-form" onClick={submitDataToProjects}>Submit</button>
+        <button className="submit-form" onClick={handleProposalSubmit}>Submit</button>
         <p></p>
         <p className="p">--------&nbsp;Input below this line is for Board Members only&nbsp;--------</p>
         <p>&nbsp;</p>
