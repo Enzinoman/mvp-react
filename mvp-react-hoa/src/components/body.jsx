@@ -1,0 +1,125 @@
+import React, { useState } from "react"
+import { useContext } from "react"
+import { appContext } from "../App"
+import MyForm from "./myForm"
+import reactLogo from '../assets/react.svg'
+import './navbar.css'
+import {GiHouse} from "react-icons/all"
+import { useEffect } from "react";
+
+
+let displayProjectsArray = [];
+
+
+const Body = (props) => {
+  const {formStatus} = useContext(appContext)
+  const {displayProjects, setDisplayProjects} = useContext(appContext)
+  const {navbarFormLinkStatus, setNavbarFormLinkStatus} = useContext(appContext)
+  const {displayProjectStatus, setDisplayProjectStatus} = useContext(appContext)
+  const {displayProposalsStatus, setDisplayProposalStatus} = useContext(appContext)
+  const {displayProposals, setDisplayProposals} = useContext(appContext)
+
+
+  useEffect(() => {  
+  
+    const getProjectsData = async () => {await fetch('http://localhost:8007/')
+              .then(res => {
+                return res.json();
+              })
+              .then(data => {
+                displayProjectsArray = data;
+                console.log(displayProjectsArray);
+              })}
+          getProjectsData();
+  }, []);
+
+  
+
+
+  var handleGetProjectDataClick = () =>{
+    if(displayProjectStatus === false){
+      setDisplayProjectStatus(true);
+      console.log(displayProjectStatus);
+      console.log("true");
+      console.log("projects is set to display data");
+
+
+    }else{
+      setDisplayProjectStatus(false);
+      console.log("false");
+      console.log("projects remove data");
+    }
+
+  }
+
+
+
+
+if(formStatus === true){
+  return (
+  <body className="body">
+    <MyForm />
+    
+    <div className="card" id="card3">
+          <p>
+            <div value='{displayProjects}'/>
+          </p>
+        </div>
+  </body>
+  )
+}else{
+  return (
+    <body className="body">
+        <div className="card" id="card1">
+        </div>
+          <div>
+            {displayProjectStatus === true ? 
+            <div>
+              <div>
+                <button className="getProjects-button" onClick={handleGetProjectDataClick}>Close Projects</button>
+              </div>
+              <div><p>&nbsp;&nbsp;&nbsp;</p></div>
+              <div>
+              {displayProjectsArray.map(project => (
+                <div key={project.id}>
+                  <div className="project-items">Project Name :&nbsp;{project.projectname}</div>
+                  <div className="project-items">Details :&nbsp;{project.details}</div>
+                  <div className="project-items">Start Date :&nbsp;{project.startdate}</div>
+                  <div className="project-items">End Date :&nbsp;{project.enddate}</div>
+                  <div className="project-items">Supervisor :&nbsp;{project.supervisor}</div>
+                  <div className="project-items">Community :&nbsp;{project.communityname}</div>
+                  <div className="project-items">Location :&nbsp;{project.locationaddress}</div>
+                  <div className="project-items">Status :&nbsp;{project.projectstatus}</div>
+                  <p>&nbsp;&nbsp;&nbsp;</p>
+                  <p>&nbsp;&nbsp;&nbsp;</p>
+                </div>
+              ))}
+            </div>
+            </div> : 
+            <div>
+              <button className="getProjects-button" onClick={handleGetProjectDataClick}>Current Projects</button>
+              <p className="project-disclaimer">Projects are an ongoing efforts of construction or services, agreed upon by the majority of homeowners a given community. 
+                'project' Voting ballots are sent to homeowners quarterly to ensure that every homeowner is considered in the voting process.
+                70% of homeowners must vote yes on a project in order for the project to be approved, as funds for the project come from homeowner dues.
+                Dues from one community may not be applied to another community's project, efforts or services.</p>
+              <p>&nbsp;&nbsp;&nbsp;</p>
+              <p className="project-disclaimer">Project requests may be submitted through the proposal form by clicking on the 'Proposal Form' navigation button above.</p>
+              <p className="project-disclaimer">All project proposals will be submitted for voting in the beginning of the following quarter, unless urgent.</p>
+              <p className="project-disclaimer">Urgent proposals are considered 'Concerns' and may be submitted as a concern by clicking the 'Concern' checkbox in the form. 
+                Concerns will be addressed immediately by the board upon receipt.</p>
+              <p className="project-disclaimer">Concerns are considered URGENT and address those matters that may cause potential damage or pose unsafe conditions immediately or in 
+                the near future.</p>
+              <p className="project-disclaimer">Regarding 'Concerns' ... they are not considered 'Emergencies' which should be addresses by contacting emergency services or dialing 911.</p>
+            </div>}
+          </div>
+          <p>&nbsp;&nbsp;&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp;</p>
+        {/* <GiHouse size="3em" /> */}
+    </body>
+
+  )
+}
+
+}
+
+export default Body;

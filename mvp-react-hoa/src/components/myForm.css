@@ -1,0 +1,27 @@
+.label {
+    color: #141415;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.p {
+    color: #141415;
+    font-weight: bold;
+    font-size: large;
+}
+
+.labelOutput {
+    color: #141415;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.input-field {
+    background-color: azure;
+}
+
+.inputRequest {
+    color: #1b1b99;
+    font-weight: bold;
+    font-size: x-large;
+}
