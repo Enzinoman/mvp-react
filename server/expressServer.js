@@ -66,22 +66,22 @@ app.get('/proposals', (req, res) => {
 
 app.post('/proposals', (req, res) => {
     let proposals = req.body;
-    let id = proposals.id;
-    let firstname = proposals.firstname;
-    let lastname = proposals.lastname;
+    // let id = proposals.id;
+    let firstName = proposals.firstname;
+    let lastName = proposals.lastname;
     let city = proposals.city;
-    let statename = proposals.statename;
+    let stateName = proposals.statename;
     let email = proposals.email;
-    let phonenumber = proposals.phonenumber;
-    let communityname = proposals.communityname;
+    let phoneNumber = proposals.phonenumber;
+    let communityName = proposals.communityname;
     let proposal = proposals.proposal;
     let reviewed = proposals.reviewed;
     let response = proposals.response;
-    let projectname = proposals.projectname;
-    let boardmember = proposals.boardmember;
+    let projectName = proposals.projectname;
+    let boardMember = proposals.boardmember;
     console.log(proposals);
-    client.query(`INSERT INTO vehicles (firstname, lastname, city, statename, email, phonenumber, communityname, proposal, reviewed, response, projectname, boardmember)
-    VALUES ('${firstname}', '${lastname}', '${city}', ${statename}, '${email}', '${phonenumber}', ${communityname}, '${proposal}', '${reviewed}', '${response}', '${projectname}', '${boardmember}') RETURNING *`)
+    client.query(`INSERT INTO proposals (firstName, lastName, city, stateName, email, phoneNumber, communityName, proposal, reviewed, response, projectName, boardMember)
+    VALUES (${firstName}', '${lastName}', '${city}', ${stateName}, '${email}', '${phoneNumber}', ${communityName}, '${proposal}', '${reviewed}', '${response}', '${projectName}', '${boardMember}') RETURNING *`)
     .then(result =>{
         
         res.status(200).send(result.rows);

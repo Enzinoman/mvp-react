@@ -118,7 +118,7 @@ function MyForm(props) {
           <input className="input-field" type="text" 
           id="proposalInput"
           value={userProposal}
-          onChange={(e) => setProposalConcern(e.target.value)} 
+          onChange={(e) => setUserProposal(e.target.value)} 
           />
         </label>
         <p></p>
@@ -130,8 +130,43 @@ function MyForm(props) {
         <button className="submit-form" onClick={handleProposalSubmit}>Submit</button>
         <p></p>
         <p className="p">--------&nbsp;Input below this line is for Board Members only&nbsp;--------</p>
-        <p>&nbsp;</p>
-
+        <p></p>
+        <label className="label"
+        >Reviewed by Board Member :&nbsp;
+          <input className="input-field" type="text" 
+          id="proposalInput"
+          value={reviewed}
+          onChange={(e) => setReviewed(e.target.value)} 
+          />
+        </label>
+        <p></p>
+        <label className="label"
+        >Board Response :&nbsp;
+          <input className="input-field" type="text" 
+          id="proposalInput"
+          value={boardResponse}
+          onChange={(e) => setBoardResponse(e.target.value)} 
+          />
+        </label>
+        <p></p>
+        <label className="label"
+        >Project Name if Approved :&nbsp;
+          <input className="input-field" type="text" 
+          id="proposalInput"
+          value={projectName}
+          onChange={(e) => setProjectName(e.target.value)} 
+          />
+        </label>
+        <p></p>
+        <label className="label"
+        >Reviewed by 'Boardmember' :&nbsp;
+          <input className="input-field" type="text" 
+          id="proposalInput"
+          value={boardMember}
+          onChange={(e) => setBoardMember(e.target.value)} 
+          />
+        </label>
+        
        
       </form>
     )
