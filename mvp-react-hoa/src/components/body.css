@@ -1,0 +1,41 @@
+.body {
+    width: 100%;
+    height: 60%;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    background-image: url("./images/nature.jpg");
+    background-size: 100%;
+    background-color: #cccccc;
+
+
+    /* --bg: #25486d; */
+    --bg-accent: #484a4d;
+    --text-color: #dadce1;
+    --nav-size: 60px;
+    --border-radius: 8px;
+    --speed: 500ms;
+  }
+
+  .project-items {
+    align-items: center;
+  }
+
+  .body {
+    height: var(--nav-size);
+    background-color: var(--bg);
+    padding: 0 1rem;
+    border-bottom: var(--bottom);
+}
+
+.project-items {
+    color: #141415;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.project-disclaimer {
+    color: #0a491b;
+    font-weight: bold;
+    font-size: x-large;
+}
