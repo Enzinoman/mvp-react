@@ -6,7 +6,7 @@ app.use(express.json());
 app.use(cors());
 const PORT = 8007;
 
-const connectionString = 'postgresql://postgres:docker@127.0.0.1:5432/template1';
+const connectionString = 'postgresql://postgres:docker@127.0.0.1:5432/scottsdale';
 const client = new Client({
     connectionString: connectionString,
 });
@@ -65,24 +65,23 @@ app.get('/proposals', (req, res) => {
 // });
 
 app.post('/proposals', (req, res) => {
-    let proposals = req.body;
-    // let id = proposals.id;
-    let firstName = proposals.firstname;
-    let lastName = proposals.lastname;
-    let city = proposals.city;
-    let stateName = proposals.statename;
-    let email = proposals.email;
-    let phoneNumber = proposals.phonenumber;
-    let communityName = proposals.communityname;
-    let proposal = proposals.proposal;
-    let reviewed = proposals.reviewed;
-    let response = proposals.response;
-    let projectName = proposals.projectname;
-    let boardMember = proposals.boardmember;
-    console.log(proposals);
-    client.query(`INSERT INTO proposals (firstName, lastName, city, stateName, email, phoneNumber, communityName, proposal, reviewed, response, projectName, boardMember)
-    VALUES (${firstName}', '${lastName}', '${city}', ${stateName}, '${email}', '${phoneNumber}', ${communityName}, '${proposal}', '${reviewed}', '${response}', '${projectName}', '${boardMember}') RETURNING *`)
-    .then(result =>{
+    let proposal = req.body;
+    // console.log(req.body);
+    let firstName = proposal.first_name;
+    let lastName = proposal.last_name;
+    let city = proposal.city;
+    let stateName = proposal.state_name;
+    let email = proposal.email;
+    let phoneNumber = proposal.phone_number;
+    let communityName = proposal.community_name;
+    let proposed = proposal.proposal;
+    let reviewed = proposal.reviewed;
+    let response = proposal.response;
+    let projectName = proposal.project_name;
+    let boardMember = proposal.board_member;
+    console.log(proposal);
+    client.query("INSERT INTO proposals (first_name, last_Name, city, state_name, email, phone_number, community_name, proposal, reviewed, response, project_name, board_member) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)", [firstName, lastName, city, stateName, email, phoneNumber, communityName, proposed, reviewed, response, projectName, boardMember])
+    .then(result => {
         
         res.status(200).send(result.rows);
     })

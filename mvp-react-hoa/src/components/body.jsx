@@ -8,7 +8,7 @@ import {GiHouse} from "react-icons/all"
 import { useEffect } from "react";
 
 
-let displayProjectsArray = [];
+
 
 
 const Body = (props) => {
@@ -27,8 +27,9 @@ const Body = (props) => {
                 return res.json();
               })
               .then(data => {
-                displayProjectsArray = data;
-                console.log(displayProjectsArray);
+                setDisplayProjects(data);
+                // console.log(data);
+                // console.log(displayProjects);
               })}
           getProjectsData();
   }, []);
@@ -57,19 +58,19 @@ const Body = (props) => {
 
 if(formStatus === true){
   return (
-  <body className="body">
+  <div className="primary">
     <MyForm />
     
     <div className="card" id="card3">
-          <p>
+
             <div value='{displayProjects}'/>
-          </p>
+
         </div>
-  </body>
+  </div>
   )
 }else{
   return (
-    <body className="body">
+    <div className="primary">
         <div className="card" id="card1">
         </div>
           <div>
@@ -80,7 +81,7 @@ if(formStatus === true){
               </div>
               <div><p>&nbsp;&nbsp;&nbsp;</p></div>
               <div>
-              {displayProjectsArray.map(project => (
+              {displayProjects.map(project => (
                 <div key={project.id}>
                   <div className="project-items">Project Name :&nbsp;{project.projectname}</div>
                   <div className="project-items">Details :&nbsp;{project.details}</div>
@@ -95,6 +96,7 @@ if(formStatus === true){
                 </div>
               ))}
             </div>
+              <GiHouse size="3em" />
             </div> : 
             <div>
               <button className="getProjects-button" onClick={handleGetProjectDataClick}>Current Projects</button>
@@ -110,12 +112,12 @@ if(formStatus === true){
               <p className="project-disclaimer">Concerns are considered URGENT and address those matters that may cause potential damage or pose unsafe conditions immediately or in 
                 the near future.</p>
               <p className="project-disclaimer">Regarding 'Concerns' ... they are not considered 'Emergencies' which should be addresses by contacting emergency services or dialing 911.</p>
+              <GiHouse size="3em" />
             </div>}
           </div>
-          <p>&nbsp;&nbsp;&nbsp;</p>
-          <p>&nbsp;&nbsp;&nbsp;</p>
-        {/* <GiHouse size="3em" /> */}
-    </body>
+          
+
+    </div>
 
   )
 }

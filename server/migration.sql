@@ -16,18 +16,18 @@ CREATE TABLE boardMembers(
 
 CREATE TABLE proposals(
     id serial,
-    firstname text,
-    lastname text,
+    first_name text,
+    last_name text,
     city text,
-    statename text,
+    state_name text,
     email text,
-    phonenumber text,
-    communityname text,
+    phone_number text,
+    community_name text,
     proposal text,
-    reviewed boolean,
+    reviewed text,
     response text,
-    projectname text,
-    boardmember text
+    project_name text,
+    board_member text
     );
 
 

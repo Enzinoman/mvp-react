@@ -3,23 +3,24 @@ import { useEffect } from "react"
 import { useContext } from "react";
 import { appContext } from '../App'
 import './myForm.css'
+import axios from "axios"
 
 
 function MyForm(props) {
 
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
+    const [first_name, setFirstName] = useState("")
+    const [last_name, setLastName] = useState("")
     const [city, setCity] = useState("")
-    const [stateName, setStateName] = useState("")
+    const [state_name, setStateName] = useState("")
     const [email, setEmail] = useState("")
-    const [phoneNumber, setPhoneNUmber] = useState("")
-    const [communityName, setCommunityName] = useState("")
-    const [userProposal, setUserProposal] = useState("")
-    const [reviewed, setReviewed] = useState(false)
-    const [boardResponse, setBoardResponse] = useState("")
-    const [projectName, setProjectName] = useState("")
-    const [boardMember, setBoardMember] = useState("")
-    const [password, getPassword] = useState('8675309')
+    const [phone_number, setPhoneNUmber] = useState("")
+    const [community_name, setCommunityName] = useState("")
+    const [proposal, setUserProposal] = useState("")
+    const [reviewed, setReviewed] = useState("")
+    const [response, setBoardResponse] = useState("")
+    const [project_name, setProjectName] = useState("")
+    const [board_member, setBoardMember] = useState("")
+    const [id, setId] = useState()
     const [projectSubmit, setProjectSubmit] = useState(false)
 
     const {displayProjects, setDisplayProjects} = useContext(appContext)
@@ -27,19 +28,60 @@ function MyForm(props) {
  
     const handleProposalSubmit = (e) => {
       e.preventDefault();
-      const update = {firstName, lastName, city, stateName, email, phoneNumber, communityName, userProposal};
+      const update =  {
+        first_name: first_name, 
+        last_name: last_name, 
+        city: city, 
+        state_name: state_name, 
+        email: email, 
+        phone_number: phone_number, 
+        community_name: community_name, 
+        proposal: proposal, 
+        reviewed: reviewed, 
+        response: response, 
+        project_name: project_name, 
+        board_member: board_member };
       console.log(update);
-      fetch('http://localhost:8007/proposals', {
+       fetch('http://localhost:8007/proposals', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(update)
       })
-      .then(() => {
+      .then((response) => {
         console.log('new item added');
+        console.log(response);
       })
+      .catch(error =>{
+        console.log(error)
+       })
     }
    
 
+  //   const handleProposalSubmit = (e) => {
+  //    e.preventDefault();
+  //    console.log("I'm handling a submit");
+  //    axios.post('http://localhost:8007/proposals', 
+  //    {first_name: firstName, 
+  //     last_name: lastName, 
+  //     city: city, 
+  //     state_name: stateName, 
+  //     email: email, 
+  //     phone_number: phoneNumber, 
+  //     community_name: communityName, 
+  //     proposal: userProposal, 
+  //     reviewed: reviewed, 
+  //     response: boardResponse, 
+  //     project_name: projectName, 
+  //     board_member: boardMember }
+  //    )
+  //    .then(response =>{
+  //     console.log(response)
+
+  //    })
+  //    .catch(error =>{
+  //     console.log(error)
+  //    })
+  // }
 
 
 
@@ -54,7 +96,7 @@ function MyForm(props) {
         >First name :&nbsp;
           <input className="input-field" type="text" 
           id="firstNameInput"
-          value={firstName}
+          value={first_name}
           onChange={(e) => setFirstName(e.target.value)} 
           />
         </label>
@@ -63,7 +105,7 @@ function MyForm(props) {
         >Last name :&nbsp;
           <input className="input-field" type="text" 
           id="lastNameInput"
-          value={lastName}
+          value={last_name}
           onChange={(e) => setLastName(e.target.value)} 
           />
         </label>
@@ -81,7 +123,7 @@ function MyForm(props) {
         >state :&nbsp;
           <input className="input-field" type="text" 
           id="stateInput"
-          value={stateName}
+          value={state_name}
           onChange={(e) => setStateName(e.target.value)} 
           />
         </label>
@@ -99,7 +141,7 @@ function MyForm(props) {
         >Phone number :&nbsp;
           <input className="input-field" type="text" 
           id="phoneNumberInput"
-          value={phoneNumber}
+          value={phone_number}
           onChange={(e) => setPhoneNUmber(e.target.value)} 
           />
         </label>
@@ -108,7 +150,7 @@ function MyForm(props) {
         >Community :&nbsp;
           <input className="input-field" type="text" 
           id="communityNameInput"
-          value={communityName}
+          value={community_name}
           onChange={(e) => setCommunityName(e.target.value)} 
           />
         </label>
@@ -117,17 +159,10 @@ function MyForm(props) {
         >Proposal / Concern :&nbsp;
           <input className="input-field" type="text" 
           id="proposalInput"
-          value={userProposal}
+          value={proposal}
           onChange={(e) => setUserProposal(e.target.value)} 
           />
         </label>
-        <p></p>
-         <label className="labelOutput"
-        >reviewed :&nbsp;{reviewed === false ? "No" : "Yes"}
-          
-        </label>
-        <p>&nbsp;</p>
-        <button className="submit-form" onClick={handleProposalSubmit}>Submit</button>
         <p></p>
         <p className="p">--------&nbsp;Input below this line is for Board Members only&nbsp;--------</p>
         <p></p>
@@ -144,7 +179,7 @@ function MyForm(props) {
         >Board Response :&nbsp;
           <input className="input-field" type="text" 
           id="proposalInput"
-          value={boardResponse}
+          value={response}
           onChange={(e) => setBoardResponse(e.target.value)} 
           />
         </label>
@@ -153,7 +188,7 @@ function MyForm(props) {
         >Project Name if Approved :&nbsp;
           <input className="input-field" type="text" 
           id="proposalInput"
-          value={projectName}
+          value={project_name}
           onChange={(e) => setProjectName(e.target.value)} 
           />
         </label>
@@ -162,10 +197,12 @@ function MyForm(props) {
         >Reviewed by 'Boardmember' :&nbsp;
           <input className="input-field" type="text" 
           id="proposalInput"
-          value={boardMember}
+          value={board_member}
           onChange={(e) => setBoardMember(e.target.value)} 
           />
         </label>
+        <p></p>
+        <button className="submit-form" onClick={handleProposalSubmit}>Submit</button>
         
        
       </form>
