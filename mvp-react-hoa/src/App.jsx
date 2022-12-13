@@ -15,6 +15,7 @@ import background from "./components/images/nature.jpg"
 
 function App(props) {
   const [formStatus, setFormStatus] = useState(false);
+  const [ediProposalStatus, setEdiProposalStatus] = useState(false);
   const [displayProjects, setDisplayProjects] = useState([]);
   const [displayProposals, setDisplayProposals] = useState([]);
   const [navbarFormLinkStatus, setNavbarFormLinkStatus] = useState(false);
@@ -28,13 +29,14 @@ function App(props) {
   const projectDataStatus = {displayProjectStatus, setDisplayProjectStatus};
   const proposalsDataStatus = {displayProposalsStatus, setDisplayProposalsStatus}
   const proposalsData = {displayProposals, setDisplayProposals}
+  const editProposalsData = {ediProposalStatus, setEdiProposalStatus}
   
 
  
 
   return (
 
-      <appContext.Provider value={{...contextData, ...projectsData, ...navBarFormLink, ...projectDataStatus, ...proposalsDataStatus, ...proposalsData}}>
+      <appContext.Provider value={{...contextData, ...editProposalsData, ...projectsData, ...navBarFormLink, ...projectDataStatus, ...proposalsDataStatus, ...proposalsData}}>
           <Header className={HeaderCss} />
           <Navbar className={NavCss} />
           <Body className={BodyCss} />

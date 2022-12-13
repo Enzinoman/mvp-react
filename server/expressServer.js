@@ -50,19 +50,26 @@ app.get('/proposals', (req, res) => {
 }); 
 
 
-// app.post('/boardMembers', (req, res) => {
-//     let customers = req.body;
-//     let id = customers.id;
-//     let customerName = customers.customer_name;
-//     let phone = customers.customer_phone_number;
-//     console.log(customers);
-//     client.query(`INSERT INTO boardMembers (id, customer_name, customer_phone_number)
-//     VALUES (${id}, '${customerName}', '${phone}') RETURNING *`)
-//     .then(result =>{
-        
-//         res.status(200).send(result.rows);
-//     })
-// });
+
+app.patch("/proposals/:id", (req, res) => {
+    console.log(req.body);
+    let customer = req.body;
+   // let setStr = "";
+    let elements = [];
+    for (element in customer) {
+      console.log(element, customer[element]);
+      elements.push(element + "='" + customer[element] + "'");
+    }
+    console.log(elements.toString());
+    // Example Syntax: http PATCH localhost:3000/customers/2 customer_name='Joe'
+    client.query(`UPDATE customers SET ${elements.toString()} WHERE id=${req.params.id} `)
+      .then((result) => {
+        res.send(req.body);
+      });
+  });
+
+
+
 
 app.post('/proposals', (req, res) => {
     let proposal = req.body;
@@ -87,6 +94,22 @@ app.post('/proposals', (req, res) => {
     })
 });
 
+
+// app.post('/boardMembers', (req, res) => {
+//     let customers = req.body;
+//     let id = customers.id;
+//     let customerName = customers.customer_name;
+//     let phone = customers.customer_phone_number;
+//     console.log(customers);
+//     client.query(`INSERT INTO boardMembers (id, customer_name, customer_phone_number)
+//     VALUES (${id}, '${customerName}', '${phone}') RETURNING *`)
+//     .then(result =>{
+        
+//         res.status(200).send(result.rows);
+//     })
+// });
+
+
 // app.post('/technicians', (req, res) => {
 //     let technicians = req.body;
 //     let employeeId = technicians.employee_id;
@@ -103,22 +126,6 @@ app.post('/proposals', (req, res) => {
 // });
 
 
-// app.patch("/customers/:id", (req, res) => {
-//     console.log(req.body);
-//     let customer = req.body;
-//    // let setStr = "";
-//     let elements = [];
-//     for (element in customer) {
-//       console.log(element, customer[element]);
-//       elements.push(element + "='" + customer[element] + "'");
-//     }
-//     console.log(elements.toString());
-//     // Example Syntax: http PATCH localhost:3000/customers/2 customer_name='Joe'
-//     client.query(`UPDATE customers SET ${elements.toString()} WHERE id=${req.params.id} `)
-//       .then((result) => {
-//         res.send(req.body);
-//       });
-//   });
 
 
 //   app.patch("/vehicles/:id", (req, res) => {
