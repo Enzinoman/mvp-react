@@ -55,9 +55,34 @@ const Body = (props) => {
   }
 
 
+if(displayProposalsStatus === true){
 
+  return(
+  <div className="primary">
+    <div></div>
+     <div className="card" id="card3">
+       <div>
+              {displayProposals.map(myProposal => (
+                <div key={myProposal.id}>
+                  <div className="proposal-items">Homeowner :&nbsp;{myProposal.first_name}</div>
+                  <div className="proposal-items">City :&nbsp;{myProposal.city}</div>
+                  <div className="proposal-items">State :&nbsp;{myProposal.state_name}</div>
+                  <div className="proposal-items">Community :&nbsp;{myProposal.community_name}</div>
+                  <div className="proposal-items">proposal :&nbsp;{myProposal.proposal}</div>
+                  <div className="proposal-items">reviewed :&nbsp;{myProposal.reviewed}</div>
+                  <div className="proposal-items">HOA Response :&nbsp;{myProposal.response}</div>
+                  <div className="proposal-items">Project :&nbsp;{myProposal.project_name}</div>
+                  <div className="proposal-items">Supervisor :&nbsp;{myProposal.board_member}</div>
+                  <p>&nbsp;&nbsp;&nbsp;</p>
+                </div>
+              ))}
+            </div>
+     </div>
+  </div>
+  )
+}else{
 
-if(formStatus === true){
+ if(formStatus === true){
   return (
   <div className="primary">
     <MyForm />
@@ -121,6 +146,7 @@ if(formStatus === true){
     </div>
 
   )
+}
 }
 
 }

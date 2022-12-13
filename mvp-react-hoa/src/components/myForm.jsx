@@ -43,6 +43,20 @@ function MyForm(props) {
         response: response, 
         project_name: project_name, 
         board_member: board_member };
+
+        setFirstName("");
+        setLastName("");
+        setCity("");
+        setStateName("");
+        setEmail("");
+        setPhoneNUmber("");
+        setCommunityName("");
+        setUserProposal("");
+        setReviewed("");
+        setBoardResponse("");
+        setProjectName("");
+        setBoardMember("");
+
       console.log(update);
        fetch('http://localhost:8007/proposals', {
         method: 'POST',
