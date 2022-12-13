@@ -16,8 +16,9 @@ const Body = (props) => {
   const {displayProjects, setDisplayProjects} = useContext(appContext)
   const {navbarFormLinkStatus, setNavbarFormLinkStatus} = useContext(appContext)
   const {displayProjectStatus, setDisplayProjectStatus} = useContext(appContext)
-  const {displayProposalsStatus, setDisplayProposalStatus} = useContext(appContext)
+  const {displayProposalsStatus, setDisplayProposalsStatus} = useContext(appContext)
   const {displayProposals, setDisplayProposals} = useContext(appContext)
+  
 
 
   useEffect(() => {  

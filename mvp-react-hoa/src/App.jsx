@@ -19,14 +19,14 @@ function App(props) {
   const [displayProposals, setDisplayProposals] = useState([]);
   const [navbarFormLinkStatus, setNavbarFormLinkStatus] = useState(false);
   const [displayProjectStatus, setDisplayProjectStatus] = useState(false); 
-  const [displayProposalsStatus, setDisplayProposalStatus] = useState(false); 
+  const [displayProposalsStatus, setDisplayProposalsStatus] = useState(false); 
 
   
   const contextData = {formStatus, setFormStatus};
   const projectsData = {displayProjects, setDisplayProjects};
   const navBarFormLink = {navbarFormLinkStatus, setNavbarFormLinkStatus};
   const projectDataStatus = {displayProjectStatus, setDisplayProjectStatus};
-  const proposalsDataStatus = {displayProposalsStatus, setDisplayProposalStatus}
+  const proposalsDataStatus = {displayProposalsStatus, setDisplayProposalsStatus}
   const proposalsData = {displayProposals, setDisplayProposals}
   
 

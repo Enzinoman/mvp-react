@@ -24,6 +24,8 @@ function MyForm(props) {
     const [projectSubmit, setProjectSubmit] = useState(false)
 
     const {displayProjects, setDisplayProjects} = useContext(appContext)
+    const {displayProposalsStatus, setDisplayProposalsStatus} = useContext(appContext)
+    
 
  
     const handleProposalSubmit = (e) => {
