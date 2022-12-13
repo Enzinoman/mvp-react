@@ -18,6 +18,7 @@ const Body = (props) => {
   const {displayProjectStatus, setDisplayProjectStatus} = useContext(appContext)
   const {displayProposalsStatus, setDisplayProposalsStatus} = useContext(appContext)
   const {displayProposals, setDisplayProposals} = useContext(appContext)
+  const {editProposalStatus, setEditProposalStatus} = useContext(appContext)
   
 
 

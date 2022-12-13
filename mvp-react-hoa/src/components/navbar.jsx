@@ -133,7 +133,7 @@ function Navbar(props) {
 
 
 
-
+if(editProposalStatus === false){
 if(displayProposalsStatus === false){
 if(navbarFormLinkStatus === false){
   return(
@@ -147,7 +147,7 @@ if(navbarFormLinkStatus === false){
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li'>Contact Us</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
-        <li className='nav-li'>Portal Access</li>
+        <li className='nav-li' onClick={editProposal}>Edit Proposal</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li' onClick={handleDisplayProposalClick}>Display Proposals</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
@@ -175,7 +175,7 @@ if(navbarFormLinkStatus === false){
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li'>Contact Us</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
-        <li className='nav-li'>Portal Access</li>
+        <li className='nav-li' onClick={editProposal}>Edit Proposal</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li' onClick={handleDisplayProposalClick}>Display Proposals</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
@@ -208,9 +208,39 @@ if(navbarFormLinkStatus === false){
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li'>Contact Us</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
-        <li className='nav-li'>Portal Access</li>
+        <li className='nav-li' onClick={editProposal}>Edit Proposal</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li' onClick={handleDisplayProposalClick}>Back</li>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <li className='nav-li' onClick={handleClick}>Proposal Form</li>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <li className='icon-buttons'>?</li>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <li className='icon-buttons'>?</li>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <li className='icon-buttons'>?</li>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+      </ul>
+          
+    </nav>
+    
+   )
+}
+}else{
+  return ( 
+    <nav className="navbar">
+      <ul className="navbar-nav">
+        <li className='nav-li'>Services</li>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <li className='nav-li'>About Us</li>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <li className='nav-li'>Blog</li>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <li className='nav-li'>Contact Us</li>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <li className='nav-li' onClick={editProposal}>Back</li>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <li className='nav-li' onClick={handleDisplayProposalClick}>Display Proposals</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li' onClick={handleClick}>Proposal Form</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
