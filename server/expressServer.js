@@ -6,7 +6,7 @@ app.use(express.json());
 app.use(cors());
 const PORT = 8007;
 
-const connectionString = 'postgresql://postgres:docker@127.0.0.1:5432/scottsdale';
+const connectionString = 'postgresql://postgres:docker@127.0.0.1:5432/template1';
 const client = new Client({
     connectionString: connectionString,
 });
