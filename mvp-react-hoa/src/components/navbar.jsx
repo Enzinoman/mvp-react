@@ -15,7 +15,7 @@ function Navbar(props) {
   const {displayProposalsStatus, setDisplayProposalsStatus} = useContext(appContext)
   const {displayProposals, setDisplayProposals} = useContext(appContext)
   const {displayProjectStatus, setDisplayProjectStatus} = useContext(appContext)
-  const {ediProposalStatus, setEdiProposalStatus} = useContext(appContext)
+  const {editProposalStatus, setEditProposalStatus} = useContext(appContext)
 
 
 
@@ -118,14 +118,13 @@ function Navbar(props) {
       setFormStatus(false);
       setNavbarFormLinkStatus(false);
       setDisplayProposalsStatus(false);
-      console.log('Displaying Form');
-      setDisplayProposals(false);
       setDisplayProjectStatus(false);
+      console.log('Editing Form');
       // getProposalsFromTable();
     }else{
       setEditProposalStatus(false);
       console.log('returning to original Navbar setting');
-      setDisplayProposalsStatus(false);
+
     }
 
   }
