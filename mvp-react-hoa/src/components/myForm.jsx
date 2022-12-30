@@ -8,6 +8,7 @@ import axios from "axios"
 
 function MyForm(props) {
 
+    const [id, setId] = useState("")
     const [first_name, setFirstName] = useState("")
     const [last_name, setLastName] = useState("")
     const [city, setCity] = useState("")
@@ -20,7 +21,10 @@ function MyForm(props) {
     const [response, setBoardResponse] = useState("")
     const [project_name, setProjectName] = useState("")
     const [board_member, setBoardMember] = useState("")
-    const [id, setId] = useState()
+
+
+
+
     const [projectSubmit, setProjectSubmit] = useState(false)
 
     const {displayProjects, setDisplayProjects} = useContext(appContext)
@@ -73,38 +77,8 @@ function MyForm(props) {
     }
    
 
-  //   const handleProposalSubmit = (e) => {
-  //    e.preventDefault();
-  //    console.log("I'm handling a submit");
-  //    axios.post('http://localhost:8007/proposals', 
-  //    {first_name: firstName, 
-  //     last_name: lastName, 
-  //     city: city, 
-  //     state_name: stateName, 
-  //     email: email, 
-  //     phone_number: phoneNumber, 
-  //     community_name: communityName, 
-  //     proposal: userProposal, 
-  //     reviewed: reviewed, 
-  //     response: boardResponse, 
-  //     project_name: projectName, 
-  //     board_member: boardMember }
-  //    )
-  //    .then(response =>{
-  //     console.log(response)
-
-  //    })
-  //    .catch(error =>{
-  //     console.log(error)
-  //    })
-  // }
-
-
-
-    let isReviewed = "Reviewed : " + reviewed;
-
-
     return (
+      <>
       <form className="proposal-form">
       <p className="inputRequest">Please fill in the fields below</p>
       <p></p>
@@ -180,48 +154,12 @@ function MyForm(props) {
           />
         </label>
         <p></p>
-        <p className="p">--------&nbsp;Input below this line is for Board Members only&nbsp;--------</p>
-        <p></p>
-        <label className="label"
-        >Reviewed by Board Member :&nbsp;
-          <input className="input-field" type="text" 
-          id="proposalInput"
-          value={reviewed}
-          onChange={(e) => setReviewed(e.target.value)} 
-          />
-        </label>
-        <p></p>
-        <label className="label"
-        >Board Response :&nbsp;
-          <input className="input-field" type="text" 
-          id="proposalInput"
-          value={response}
-          onChange={(e) => setBoardResponse(e.target.value)} 
-          />
-        </label>
-        <p></p>
-        <label className="label"
-        >Project Name if Approved :&nbsp;
-          <input className="input-field" type="text" 
-          id="proposalInput"
-          value={project_name}
-          onChange={(e) => setProjectName(e.target.value)} 
-          />
-        </label>
-        <p></p>
-        <label className="label"
-        >Reviewed by 'Boardmember' :&nbsp;
-          <input className="input-field" type="text" 
-          id="proposalInput"
-          value={board_member}
-          onChange={(e) => setBoardMember(e.target.value)} 
-          />
-        </label>
-        <p></p>
         <button className="submit-form" onClick={handleProposalSubmit}>Submit</button>
-        
-       
-      </form>
+        <p></p>
+
+
+        </form>
+      </>
     )
 }
 

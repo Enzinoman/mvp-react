@@ -21,6 +21,7 @@ function App(props) {
   const [navbarFormLinkStatus, setNavbarFormLinkStatus] = useState(false);
   const [displayProjectStatus, setDisplayProjectStatus] = useState(false); 
   const [displayProposalsStatus, setDisplayProposalsStatus] = useState(false); 
+  const [deleteProposalStatus, setDeleteProposalStatus] = useState(false);
 
   
   const contextData = {formStatus, setFormStatus};
@@ -30,13 +31,15 @@ function App(props) {
   const proposalsDataStatus = {displayProposalsStatus, setDisplayProposalsStatus}
   const proposalsData = {displayProposals, setDisplayProposals}
   const editProposalsData = {editProposalStatus, setEditProposalStatus}
+  const deleteProposalsData = {deleteProposalStatus, setDeleteProposalStatus}
+  
   
 
  
 
   return (
 
-      <appContext.Provider value={{...contextData, ...editProposalsData, ...projectsData, ...navBarFormLink, ...projectDataStatus, ...proposalsDataStatus, ...proposalsData}}>
+      <appContext.Provider value={{...deleteProposalsData, ...contextData, ...editProposalsData, ...projectsData, ...navBarFormLink, ...projectDataStatus, ...proposalsDataStatus, ...proposalsData}}>
           <Header className={HeaderCss} />
           <Navbar className={NavCss} />
           <Body className={BodyCss} />

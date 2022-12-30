@@ -16,7 +16,7 @@ function Navbar(props) {
   const {displayProposals, setDisplayProposals} = useContext(appContext)
   const {displayProjectStatus, setDisplayProjectStatus} = useContext(appContext)
   const {editProposalStatus, setEditProposalStatus} = useContext(appContext)
-
+  const {deleteProposalStatus, setDeleteProposalStatus} = useContext(appContext)
 
 
   // useEffect(() => {
@@ -70,6 +70,7 @@ function Navbar(props) {
       setNavbarFormLinkStatus(true);
       setDisplayProposalsStatus(false);
       setDisplayProjectStatus(false);
+      setDeleteProposalStatus(false);
     }else{
       setFormStatus(false);
       console.log('returning to original Navbar setting');
@@ -101,6 +102,7 @@ function Navbar(props) {
       setNavbarFormLinkStatus(false);
       setFormStatus(false);
       getProposalsFromTable();
+      setDeleteProposalStatus(false);
     }else{
       setFormStatus(false);
       console.log('returning to original Navbar setting');
@@ -112,9 +114,9 @@ function Navbar(props) {
 
 
 
-  var editProposal = () =>{
-    if(editProposalStatus === false){
-      setEditProposalStatus(true);
+  var deleteProposal = () =>{
+    if(deleteProposalStatus === false){
+      setDeleteProposalStatus(true);
       setFormStatus(false);
       setNavbarFormLinkStatus(false);
       setDisplayProposalsStatus(false);
@@ -122,7 +124,7 @@ function Navbar(props) {
       console.log('Editing Form');
       // getProposalsFromTable();
     }else{
-      setEditProposalStatus(false);
+      setDeleteProposalStatus(false);
       console.log('returning to original Navbar setting');
 
     }
@@ -133,7 +135,7 @@ function Navbar(props) {
 
 
 
-if(editProposalStatus === false){
+if(deleteProposalStatus === false){
 if(displayProposalsStatus === false){
 if(navbarFormLinkStatus === false){
   return(
@@ -147,7 +149,7 @@ if(navbarFormLinkStatus === false){
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li'>Contact Us</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
-        <li className='nav-li' onClick={editProposal}>Edit Proposal</li>
+        <li className='nav-li' onClick={deleteProposal}>Delete Proposal</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li' onClick={handleDisplayProposalClick}>Display Proposals</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
@@ -175,11 +177,11 @@ if(navbarFormLinkStatus === false){
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li'>Contact Us</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
-        <li className='nav-li' onClick={editProposal}>Edit Proposal</li>
+        <li className='nav-li' onClick={deleteProposal}>Delete Proposal</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li' onClick={handleDisplayProposalClick}>Display Proposals</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
-        <li className='nav-li' onClick={handleClick}>Back</li>
+        <li className='nav-li' onClick={handleClick}>Home</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='icon-buttons'>?</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
@@ -208,9 +210,9 @@ if(navbarFormLinkStatus === false){
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li'>Contact Us</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
-        <li className='nav-li' onClick={editProposal}>Edit Proposal</li>
+        <li className='nav-li' onClick={deleteProposal}>Delete Proposal</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
-        <li className='nav-li' onClick={handleDisplayProposalClick}>Back</li>
+        <li className='nav-li' onClick={handleDisplayProposalClick}>Home</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li' onClick={handleClick}>Proposal Form</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
@@ -238,7 +240,7 @@ if(navbarFormLinkStatus === false){
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li'>Contact Us</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
-        <li className='nav-li' onClick={editProposal}>Back</li>
+        <li className='nav-li' onClick={deleteProposal}>Home</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
         <li className='nav-li' onClick={handleDisplayProposalClick}>Display Proposals</li>
         <p>&nbsp;&nbsp;&nbsp;</p>
@@ -255,6 +257,7 @@ if(navbarFormLinkStatus === false){
     </nav>
     
    )
+
 }
 }
 

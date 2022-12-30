@@ -6,12 +6,17 @@ app.use(express.json());
 app.use(cors());
 const PORT = 8007;
 
-const connectionString = 'postgresql://postgres:docker@127.0.0.1:5432/template1';
+const connectionString = 'postgres://postgres:docker@127.0.0.1:5432/hoa';
 const client = new Client({
+
     connectionString: connectionString,
 });
 client.connect();
 
+// postgresql://postgres:docker@127.0.0.1:5432/hoa';
+// postgres://postgres:docker@db:5432/hoa
+
+// postgresql://myuser:mypassword@localhost:5432/mydatabase
 /* const connectionString = 'postgresql://postgres:docker@127.0.0.1:5432/template1';
 const client = new Client({
     connectionString: connectionString,
@@ -19,9 +24,16 @@ const client = new Client({
 client.connect(); */
 
 
+app.get('/hello', function(req, res){
+  res.send('hi there!');
+
+})
 
 
-app.get('/', async (req,res)=>{
+
+
+
+app.get("/", async (req,res)=>{
   const {rows} = await client.query('SELECT * FROM projects')
     // console.log(res.rows);
     // console.log("I'm being accessed");
@@ -30,17 +42,30 @@ app.get('/', async (req,res)=>{
 
 
 
-app.get('/projects', (req, res) => {
-  client.query('SELECT * FROM projects')
-    .then(result => {
-        //console.log(result.rows[0])
-        res.send(result.rows);
+app.delete("/delete/:id", (req, res) => {
+  console.log(req.params.id);
+  client.query(`DELETE FROM proposals WHERE id = ${req.params.id}`)
+    //   res.send("DELETE pets Called");
+    .then((result) => {
+      res.send(result.rows);
     })
-    .catch(e => console.error(e.stack))
-}); 
+    .catch((err) => {
+      res.send(err);
+      console.error(err);
+    });
+});
 
 
-app.get('/proposals', (req, res) => {
+app.get("/projects", function (req, res) {
+  let sql = 'SELECT * FROM projects';
+  client.query(sql, function (error, results, fields) {
+    if (error) throw error;
+    res.send(results);
+  });
+});
+
+
+app.get("/proposals", (req, res) => {
   client.query('SELECT * FROM proposals')
     .then(result => {
         //console.log(result.rows[0])
@@ -51,19 +76,20 @@ app.get('/proposals', (req, res) => {
 
 
 
-app.patch("/proposals/:id", (req, res) => {
+app.patch("/update/:id", (req, res) => {
     console.log(req.body);
-    let customer = req.body;
+    let proposal = req.body;
    // let setStr = "";
     let elements = [];
-    for (element in customer) {
-      console.log(element, customer[element]);
-      elements.push(element + "='" + customer[element] + "'");
+    for (element in proposal) {
+      console.log(element, proposal[element]);
+      elements.push(element + "='" + proposal[element] + "'");
     }
     console.log(elements.toString());
     // Example Syntax: http PATCH localhost:3000/customers/2 customer_name='Joe'
-    client.query(`UPDATE customers SET ${elements.toString()} WHERE id=${req.params.id} `)
+    client.query(`UPDATE proposals SET ${elements.toString()} WHERE id=${req.params.id} `)
       .then((result) => {
+        console.log(result);
         res.send(req.body);
       });
   });
@@ -125,26 +151,41 @@ app.post('/proposals', (req, res) => {
 //     })
 // });
 
+// app.patch("/updateProposal/:id", (req, res) => {
+//   console.log(req.body);
+//   let proposal = req.body;
+//   let elements = [];
+//   for (element in proposal) {
+//     console.log(element, proposal[element]);
+//     elements.push(element + "='" + proposal[element] + "'");
+//   }
+//   console.log(elements.toString());
+//   // Example Syntax: http PATCH localhost:3000/customers/2 customer_name='Joe'
+//   client.query(`UPDATE proposals SET ${elements.toString()} WHERE id=${req.params.id} `)
+//     .then((result) => {
+//       console.log(result);
+//       res.send(req.body);
+//     });
+// });
 
 
-
-//   app.patch("/vehicles/:id", (req, res) => {
-//     console.log(req.body);
-//     let vehicle = req.body;
-//    // let setStr = "";
-//     let elements = [];
-//     for (element in vehicle) {
-//       console.log(element, vehicle[element]);
-//       elements.push(element + "='" + vehicle[element] + "'");
-//     }
-//     console.log(elements.toString());
-//     // Example Syntax: http PATCH localhost:3000/vehicles/2 model='Murano'
+  // app.patch("/updateProposal/:id", (req, res) => {
+  //   console.log(req.body);
+  //   let proposal = req.body;
+  //  // let setStr = "";
+  //   let elements = [];
+  //   for (element in proposal) {
+  //     console.log(element, proposal[element]);
+  //     elements.push(element + "='" + proposal[element] + "'");
+  //   }
+  //   console.log(elements.toString());
+  //   // Example Syntax: http PATCH localhost:3000/vehicles/2 model='Murano'
   
-//     client.query(`UPDATE vehicles SET ${elements.toString()} WHERE id=${req.params.id} `)
-//       .then((result) => {
-//         res.send(req.body);
-//       });
-//   });
+  //   client.query(`UPDATE vehicles SET ${elements.toString()} WHERE id=${req.params.id} `)
+  //     .then((result) => {
+  //       res.send(req.body);
+  //     });
+  // });
 
 
 //   app.patch("/technicians/:id", (req, res) => {
